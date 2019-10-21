@@ -5,14 +5,14 @@
 
 /* Remove margins and padding from the list */
 table {
-	margin: 0;
-	padding: 0;
+	display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 
 /* Style the list items */
-table tbody {
-	cursor: pointer;
-	position: relative;
+table tbody tr {
+
 	padding: 12px 8px 12px 40px;
 	background: #eee;
 	font-size: 18px;
@@ -25,39 +25,34 @@ table tbody {
 	user-select: none;
 }
 
-/* Set all odd list items to a different color (zebra-stripes) */
-table tbody:nth-child(odd) {
-	background: #f9f9f9;
-}
+/* Style date */
 
-/* Darker background-color on hover */
-table tbody:hover {
-	background: #ddd;
-}
-
-/* Add a "checked" mark when clicked on */
-table tbody.checked::before {
-	content: '';
-	position: absolute;
-	border-color: #fff;
-	border-style: solid;
-	border-width: 0 2px 2px 0;
-	top: 10px;
-	left: 16px;
-	transform: rotate(45deg);
-	height: 15px;
-	width: 7px;
+.date {
+    background: cornsilk;
 }
 
 /* Style the close button */
 .close {
 	height: 100%;
 	width: 50px;
+    background: rgb(203, 228, 254);
 }
 
 .close:hover {
 	background-color: #f44336;
 	color: white;
+}
+
+/* Style the edit button */
+.edit {
+    height: 100%;
+    width: 50px;
+    background: rgba(235,241,254,1);
+}
+
+.edit:hover {
+    background-color: #f44336;
+    color: white;
 }
 
 /* Style the header */
