@@ -1,39 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Start</title>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <meta name="description" content=""/>
-    <meta name="keywords" content=""/>
-    <link rel="stylesheet" href="css/normalize.css"/>
-    <link rel="stylesheet" href="css/layout.css"/>
-    <link rel="stylesheet" href="css/style.css"/>
-
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
+	<meta charset="UTF-8">
+	<meta name="viewport"
+	      content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="styles.css">
+	<title>Document</title>
 </head>
 <body>
-<main role="main">
-    <div id="myDIV" class="header">
-        <h2>To do list  Vanilla Js</h2>
-        <input type="text" id="myInput" placeholder="Enter the tasks">
-        <span onclick="newElement()" class="addBtn">Add</span>
-    </div>
-<table>
-    <tbody id="myUL">
+<div class="wrapper">
+	<div class="app">
+		<div class="app__header">
+			<div class="app__title"><span class="app__title-text">To Do List</span></div>
+			<div class="app__info">
+				<div class="app__info-item">
+					<span class="app__info-text">All tasks</span>
+					<span class="app__info-number" id="js-all-tasks"></span>
+				</div>
+				<div class="app__info-item">
+					<span class="app__info-text">Done</span>
+					<span class="app__info-number" id="js-done-tasks"></span>
+				</div>
+			</div>
+		</div>
+		<div class="app__body">
+			<ul class="app__list" id="app__list"></ul>
+		</div>
+		<div class="app__footer">
+			<input class="app__task-new" id="app__task-new" placeholder="Add new task">
+		</div>
+	</div>
+</div>
 
-    </tbody>
-</table>
-
-</main>
-<footer class="ba-footer">
-
-</footer>
-<script src="js/main.js"></script>
+<script src="script.js"></script>
 </body>
 </html>
