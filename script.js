@@ -38,9 +38,9 @@
     }
 
     function createItem(el) {
-        let item = document.createElement('li'),
-            remove = document.createElement('div'),
-            text = document.createElement('span');
+        let item = document.createElement('tr'),
+            remove = document.createElement('td'),
+            text = document.createElement('td');
         remove.classList.add('app__list-remove');
         remove.addEventListener('click', function () {
             removeTask(this);
