@@ -74,6 +74,12 @@ li {
 .app__list-item:hover .app__list-remove:hover {
   opacity: 1;
 }
+.app__list-item:hover .app__list-edit {
+  opacity: 0.5;
+}
+.app__list-item:hover .app__list-edit:hover {
+  opacity: 1;
+}
 .app__list-item.app__list-item--done {
   background-color: #8fc579;
 }
@@ -116,6 +122,24 @@ li {
 .app__list-remove:after {
   height: 20px;
   width: 3px;
+}
+.app__list-edit {
+  border: 1px solid #9aff97;
+  border-radius: 50%;
+  cursor: pointer;
+  background: #dffdff;
+  height: 32px;
+  opacity: 0;
+  width: 32px;
+  display: flex;
+  align-items: center;
+}
+.app__list-edit:before, .app__list-edit:after {
+  content: "";
+  background-color: #ccffe5;
+  left: 50%;
+  position: absolute;
+  top: 50%;
 }
 .app__task-new {
   border: 0;

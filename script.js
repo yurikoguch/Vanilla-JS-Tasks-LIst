@@ -40,9 +40,14 @@
             remove = document.createElement('td'),
             text = document.createElement('td');
             min = document.createElement('td');
+            edit = document.createElement('td');
         remove.classList.add('app__list-remove');
         remove.addEventListener('click', function () {
             removeTask(this);
+        });
+        edit.classList.add('app__list-edit');
+        edit.addEventListener('click', function () {
+            editTask(this);
         });
         text.classList.add('app__list-text');
         text.addEventListener('click', function () {
@@ -58,8 +63,10 @@
         item.id = el.taskId;
         text.innerHTML = el.taskContent;
         min.innerHTML = el.taskDate;
+        edit.innerHTML = '<td>Edit</td>';
         item.appendChild(text);
         item.appendChild(min);
+        item.appendChild(edit);
         item.appendChild(remove);
         tasksList.appendChild(item);
     }
