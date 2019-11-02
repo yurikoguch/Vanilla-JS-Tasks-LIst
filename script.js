@@ -2,17 +2,15 @@
     let tasks = {
             current: [{
                 taskId: doId(),
-                taskContent: "Таск 1",
-                taskState: "current"
-            }, {
-                taskId: doId(),
-                taskContent: "Таск 2",
-                taskState: "current"
+                taskContent: "Task 1",
+                taskState: "current",
+                taskDate: '',
             }],
             done: [{
                 taskId: doId(),
-                taskContent: "Таск 3",
-                taskState: "done"
+                taskContent: "Task 2",
+                taskState: "done",
+                taskDate: '',
             }],
             get allTasks() {
                 return this.current.length + this.done.length;
@@ -41,6 +39,7 @@
         let item = document.createElement('tr'),
             remove = document.createElement('td'),
             text = document.createElement('td');
+            min = document.createElement('td');
         remove.classList.add('app__list-remove');
         remove.addEventListener('click', function () {
             removeTask(this);
@@ -58,7 +57,9 @@
         }
         item.id = el.taskId;
         text.innerHTML = el.taskContent;
+        min.innerHTML = el.taskDate;
         item.appendChild(text);
+        item.appendChild(min);
         item.appendChild(remove);
         tasksList.appendChild(item);
     }
@@ -97,7 +98,8 @@
         let elem = {
             taskId: doId(),
             taskContent: str,
-            taskState: "current"
+            taskState: "current",
+            taskDate: date,
         };
         tasks.current.push(elem);
         createItem(elem);
@@ -106,12 +108,19 @@
 
     function doId() {
         return Math.random().toString(36).substr(2, 16);
-    }
+    };
+
+
+
+        let today = new Date();
+        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getHours() + '-' + today.getMinutes();
+
+
 
     INIT();
 
     addNewTaskField.addEventListener('keyup',function (e) {
-        if(e.key === 13) {
+        if(e.key === 'Enter') {
             addTasks(this.value);
             this.value = "";
         }
