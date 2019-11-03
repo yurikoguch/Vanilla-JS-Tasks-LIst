@@ -87,6 +87,14 @@ li {
           text-decoration: line-through;
         }
       }
+      &.app__list-item--edited {
+
+        .app__list-text{
+          :after{
+            content: 'edited';
+          }
+        }
+      }
     }
     &-text {
       cursor: pointer;

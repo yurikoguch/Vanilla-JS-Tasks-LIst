@@ -86,6 +86,9 @@ li {
 .app__list-item.app__list-item--done .app__list-text {
   text-decoration: line-through;
 }
+.app__list-item.app__list-item--edited .app__list-text :after {
+  content: "edited";
+}
 .app__list-text {
   cursor: pointer;
   flex: 1;

@@ -12,6 +12,11 @@
                 taskState: "done",
                 taskDate: '',
             }],
+            edited: [{
+                taskId: doId(),
+                taskState: 'edit',
+                taskDate: '',
+            }],
             get allTasks() {
                 return this.current.length + this.done.length;
             },
@@ -31,12 +36,16 @@
         for (const item of tasks.done) {
             createItem(item);
         }
+        for (const item of tasks.edited){
+            createItem(item)
+        }
         allTasks.innerHTML = tasks.allTasks;
         doneTasks.innerHTML = tasks.doneTasks;
     }
 
     function createItem(el) {
         let item = document.createElement('tr'),
+            form = document.createElement('textarea'),
             remove = document.createElement('td'),
             text = document.createElement('td');
             min = document.createElement('td');
@@ -57,6 +66,8 @@
             case 'done':
                 item.classList.add('app__list-item', 'app__list-item--done');
                 break;
+            case 'edited':
+                form.classList.add('app__list-item', 'app__list-item--edited');
             default:
                 item.classList.add('app__list-item');
         }
@@ -99,7 +110,26 @@
         }
         allTasks.innerHTML = tasks.allTasks;
         doneTasks.innerHTML = tasks.doneTasks;
+
     }
+
+    function editTask(el) {
+        let elem = el.parentNode,
+            elemId = elem.id,
+            elemState = elem.classList.contains('app__list-item--done');
+
+        const [itemsRemove, itemsAdd] = elemState ? [tasks.edited, tasks.current] : [tasks.current, tasks.edited];
+        elem.classList.toggle('app__list-item--done');
+        for (const [index, item] of itemsRemove.entries()) {
+            if (item.taskId !== elemId) continue;
+            itemsAdd.push(item);
+            itemsRemove.splice(index, 1);
+        }
+
+
+    };
+
+
 
     function addTasks(str) {
         let elem = {
@@ -118,9 +148,8 @@
     };
 
 
-
-        let today = new Date();
-        let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getHours() + '-' + today.getMinutes();
+    let today = new Date();
+    let date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate() + '-' + today.getHours() + '-' + today.getMinutes();
 
 
 
