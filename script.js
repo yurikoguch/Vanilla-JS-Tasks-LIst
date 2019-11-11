@@ -5,18 +5,16 @@
                 taskContent: "Task 1",
                 taskState: "current",
                 taskDate: '',
+                isEdit: false,
             }],
             done: [{
                 taskId: doId(),
                 taskContent: "Task 2",
                 taskState: "done",
                 taskDate: '',
+                isEdit: false,
             }],
-            edited: [{
-                taskId: doId(),
-                taskState: 'edit',
-                taskDate: '',
-            }],
+
             get allTasks() {
                 return this.current.length + this.done.length;
             },
@@ -29,6 +27,7 @@
         doneTasks = document.getElementById("js-done-tasks"),
         addNewTaskField = document.getElementById("app__task-new");
 
+
     function INIT() {
         for (const item of tasks.current) {
             createItem(item);
@@ -36,16 +35,13 @@
         for (const item of tasks.done) {
             createItem(item);
         }
-        for (const item of tasks.edited){
-            createItem(item)
-        }
+
         allTasks.innerHTML = tasks.allTasks;
         doneTasks.innerHTML = tasks.doneTasks;
     }
 
     function createItem(el) {
         let item = document.createElement('tr'),
-            form = document.createElement('textarea'),
             remove = document.createElement('td'),
             text = document.createElement('td');
             min = document.createElement('td');
@@ -66,11 +62,10 @@
             case 'done':
                 item.classList.add('app__list-item', 'app__list-item--done');
                 break;
-            case 'edited':
-                form.classList.add('app__list-item', 'app__list-item--edited');
             default:
                 item.classList.add('app__list-item');
         }
+
         item.id = el.taskId;
         text.innerHTML = el.taskContent;
         min.innerHTML = el.taskDate;
@@ -117,15 +112,18 @@
         let elem = el.parentNode,
             elemId = elem.id,
             elemState = elem.classList.contains('app__list-item--done');
+            elem.isEdit = true;
 
-        const [itemsRemove, itemsAdd] = elemState ? [tasks.edited, tasks.current] : [tasks.current, tasks.edited];
-        elem.classList.toggle('app__list-item--done');
-        for (const [index, item] of itemsRemove.entries()) {
-            if (item.taskId !== elemId) continue;
-            itemsAdd.push(item);
-            itemsRemove.splice(index, 1);
-        }
+            if (elem.isEdit){
+               const newField = document.createElement('input');
+               elem.appendChild(newField);
 
+               newField.addEventListener('keyup',function (e) {
+                    if(e.key === 'Enter') {
+                        this.value = "";
+                    }
+                })
+            }
 
     };
 
@@ -142,6 +140,9 @@
         createItem(elem);
         allTasks.innerHTML = tasks.allTasks;
     }
+
+
+
 
     function doId() {
         return Math.random().toString(36).substr(2, 16);
