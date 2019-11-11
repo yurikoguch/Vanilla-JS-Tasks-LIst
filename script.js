@@ -108,22 +108,23 @@
 
     }
 
-    function editTask(el) {
+    function editTask(el, taskDate) {
         let elem = el.parentNode,
             elemId = elem.id,
             elemState = elem.classList.contains('app__list-item--done');
+            elemText = elem.text;
             elem.isEdit = true;
 
-            if (elem.isEdit){
-               const newField = document.createElement('input');
-               elem.appendChild(newField);
+        if (elem.isEdit){
+            const newField = document.createElement('input');
+            elem.appendChild(newField);
 
-               newField.addEventListener('keyup',function (e) {
-                    if(e.key === 'Enter') {
-                        this.value = "";
-                    }
-                })
-            }
+            newField.addEventListener('keyup',function (e) {
+                if(e.key === 'Enter') {
+                    elem.innerHTML = this.value;
+                }
+            })
+        }
 
     };
 
