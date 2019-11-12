@@ -108,12 +108,12 @@
 
     }
 
-    function editTask(el, taskDate) {
+    function editTask(el) {
         let elem = el.parentNode,
             elemId = elem.id,
             elemState = elem.classList.contains('app__list-item--done');
-            elemText = elem.text;
             elem.isEdit = true;
+            elemCont = elem.textContent;
 
         if (elem.isEdit){
             const newField = document.createElement('input');
@@ -121,7 +121,9 @@
 
             newField.addEventListener('keyup',function (e) {
                 if(e.key === 'Enter') {
-                    elem.innerHTML = this.value;
+                    let edTas = Object.assign({}, elem, {taskContent: this.value});
+                    elem.innerHTML = edTas.taskContent;
+
                 }
             })
         }
